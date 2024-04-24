@@ -8,12 +8,12 @@ class NewTable extends React.Component{
   }
 
   componentDidMount(){
-    this.focusOnInput()
+    this.focusOnInputElement()
   }
 
-  focusOnInput(){
-    var form = document.getElementById("get-new-table-input");
-    form.querySelector("input[name='which-table']").focus();
+  focusOnInputElement(){
+    var main = document.getElementById("one-div");
+    main.querySelector("[focus='true']").focus();
   }
 
   handleSubmit(e){
@@ -28,14 +28,14 @@ class NewTable extends React.Component{
             Mind Multiplier
           </title>
         </Head>
-        <div className="h-56 grid grid-cols-3 gap-4 place-items-center ...">
+        <div id="one-div" className="h-56 grid grid-cols-3 gap-4 place-items-center ...">
           <div></div>
-          <form id="get-new-table-input" onSubmit={this.handleSubmit.bind(this)}>
+          <form onSubmit={this.handleSubmit.bind(this)}>
             <div>
               <label> What table would you like to see? </label>
             </div>
             <div className="mt-3">
-              <input type="text" name="which-table" className="border border-black rounded-full text-xl indent-3 focus-visible:outline-none" />
+              <input type="text" name="which-table" className="border border-black rounded-full text-xl indent-3 focus-visible:outline-none" focus="true" />
               <button type="submit" className="ml-3 px-2 py-2 font-semibold rounded-full border border-sky-700 text-sm bg-sky-500 hover:bg-sky-700">
                 Submit
               </button>
