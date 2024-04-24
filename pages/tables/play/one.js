@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Layout from '../../../components/layout'
 import React from 'react'
 
@@ -22,12 +21,8 @@ class NewTable extends React.Component{
   render(){
     return(
       <Layout>
-        <Head>
-          <title>
-            Mind Multiplier
-          </title>
-        </Head>
         <div id="one-div" className="h-56 grid grid-cols-3 gap-4 place-items-center ...">
+          {/* These divs are required to keep the content centered */}
           <div></div>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div>

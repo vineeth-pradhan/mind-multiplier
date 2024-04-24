@@ -23,6 +23,9 @@ export default function Layout({ children, home }) {
         />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
+        <title>
+          Mind Multiplier
+        </title>
       </Head>
       <header className={styles.header}>
         <h1 className={utilStyles.heading2Xl}>{siteTitle}</h1>
