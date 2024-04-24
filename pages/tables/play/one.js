@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../../components/layout'
-import React from 'react';
+import React from 'react'
 
 class NewTable extends React.Component{
   constructor(){
@@ -8,7 +8,7 @@ class NewTable extends React.Component{
   }
 
   componentDidMount(){
-    this.focusOnInput();
+    this.focusOnInput()
   }
 
   focusOnInput(){
@@ -17,7 +17,7 @@ class NewTable extends React.Component{
   }
 
   handleSubmit(e){
-    e.preventDefault();
+    e.preventDefault()
   }
 
   render(){
@@ -30,7 +30,7 @@ class NewTable extends React.Component{
         </Head>
         <div className="h-56 grid grid-cols-3 gap-4 place-items-center ...">
           <div></div>
-          <form id="get-new-table-input" onSubmit={this.handleSubmit}>
+          <form id="get-new-table-input" onSubmit={this.handleSubmit.bind(this)}>
             <div>
               <label> What table would you like to see? </label>
             </div>
