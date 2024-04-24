@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link'
 
-export default class Menu extends React.Component{
+class Menu extends React.Component{
   constructor(){
-    super();
+    super()
   }
 
   render(){
@@ -23,3 +23,5 @@ export default class Menu extends React.Component{
     )
   }
 }
+
+export default Menu

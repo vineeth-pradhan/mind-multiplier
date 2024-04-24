@@ -12,8 +12,7 @@ class NewTable extends React.Component{
   }
 
   focusOnInputElement(){
-    var main = document.getElementById("one-div");
-    main.querySelector("[focus='true']").focus();
+    document.getElementById("one-div").querySelector("[focus='true']").focus()
   }
 
   handleSubmit(e){
@@ -48,4 +47,4 @@ class NewTable extends React.Component{
   }
 }
 
-export default NewTable;
+export default NewTable
