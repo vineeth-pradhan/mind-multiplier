@@ -8,18 +8,20 @@ class Menu extends React.Component{
 
   render(){
     return(
-      <ul className="menu bg-base-200 w-56 rounded-box">
-        <li><Link href="/tables/recite-all">Recite</Link></li>
-        <li>
-          <details close="true">
-            <summary>Play</summary>
-            <ul>
-              <li><Link href="/tables/play/one">One Table</Link></li>
-              <li><Link href="/tables/play/master">Master</Link></li>
-            </ul>
-          </details>
-        </li>
-      </ul>
+      <div className="fixed">
+        <ul className="menu bg-base-200 w-56 rounded-box min-w-[20%]">
+          <li><Link href="/tables/recite-all">Recite</Link></li>
+          <li>
+            <details close="true">
+              <summary>Play</summary>
+              <ul>
+                <li><Link href="/tables/play/one">One Table</Link></li>
+                <li><Link href="/tables/play/master">Master</Link></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
     )
   }
 }
