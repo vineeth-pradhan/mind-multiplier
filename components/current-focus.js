@@ -3,15 +3,11 @@ import React from 'react'
 class CurrentFocus extends React.Component{
   constructor(){
     super()
-    this.state = { subjectInputElement: null, correctAnswer: null, currentRandomMultiplier: null }
-    this.setCurrentRandomMultiplier.bind(this)
-    this.setCorrectAnswer.bind(this)
+    this.state = { subjectInputElement: null, correctAnswer: null }
   }
 
-  // Next up. Set all these values in props instead of calculating them in componentDidMount
   componentDidMount(){
     this.focusOnInputElement()
-    this.setCurrentRandomMultiplier()
     this.setCorrectAnswer()
   }
 
@@ -21,20 +17,12 @@ class CurrentFocus extends React.Component{
   }
 
   setCorrectAnswer(){
-    this.setState({ correctAnswer: this.props.currentTable * this.state.currentRandomMultiplier })
-  }
-
-  setCurrentRandomMultiplier(){
-    this.setState({ currentRandomMultiplier: Math.ceil(Math.random() * this.props.remainingMultipliers.length)})
-  }
-
-  pickRandom(){
-    return Math.floor(Math.random() * this.props.remainingMultipliers.length)
+    this.setState({ correctAnswer: this.props.currentTable * this.props.currentRandomMultiplier })
   }
 
   handleSubmit(e){
     e.preventDefault()
-    if(this.subjectInputElement.value == this.state.correctAnswer){
+    if(parseInt(this.subjectInputElement.value) == this.state.correctAnswer){
       console.log("correct")
       console.log(this.state.correctAnswer)
     }
@@ -50,7 +38,7 @@ class CurrentFocus extends React.Component{
         <form onSubmit={this.handleSubmit.bind(this)}>
           <label> {this.props.currentTable} </label>
           <label> x </label>
-          <label> {this.state.currentRandomMultiplier} = </label>
+          <label> {this.props.currentRandomMultiplier} = </label>
           <input type="text" name="table-answer" className="border border-black rounded-full text-xl indent-3 focus-visible:outline-none" focus="true" />
           <button type="submit" className="ml-3 px-2 py-2 font-semibold rounded-full border border-sky-700 text-sm bg-sky-500 hover:bg-sky-700"> Ok 
           </button>
