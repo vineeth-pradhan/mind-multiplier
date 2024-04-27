@@ -23,7 +23,6 @@ class NewTable extends React.Component{
       <Layout>
         <div id="one-div" className="h-56 grid grid-cols-3 gap-4 place-items-center ...">
           {/* These divs are required to keep the content centered */}
-          <div></div>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div>
               <label> What table would you like to see? </label>
@@ -35,7 +34,6 @@ class NewTable extends React.Component{
               </button>
             </div>
           </form>
-          <div></div>
         </div>
       </Layout>
     );
