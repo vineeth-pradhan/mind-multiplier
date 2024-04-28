@@ -22,7 +22,6 @@ class NewTable extends React.Component{
     return(
       <Layout>
         <div id="one-div" className="h-56 grid grid-cols-3 gap-4 place-items-center ...">
-          {/* These divs are required to keep the content centered */}
           <form onSubmit={this.handleSubmit.bind(this)}>
             <div>
               <label> What table would you like to see? </label>

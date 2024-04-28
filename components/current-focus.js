@@ -3,6 +3,12 @@ import { useState, useEffect } from 'react';
 function CurrentFocus(props){
   const [subjectInputElement, setSubjectInputElement] = useState();
   const [correctAnswer, setCorrectAnswer] = useState();
+  const [form, setForm] = useState();
+
+  useEffect(() => {
+    let element = document.getElementById("focus-div").querySelector("form");
+    setForm(element)
+  });
 
   useEffect(() => {
     let element = document.getElementById("focus-div").querySelector("[focus='true']") 
@@ -12,28 +18,17 @@ function CurrentFocus(props){
 
   useEffect(() => {
     setCorrectAnswer(props.currentTable * props.currentRandomMultiplier);
-  })
+  });
 
-  var handleSubmit = function(e){
-    e.preventDefault()
-    if(parseInt(subjectInputElement.value) == correctAnswer){
-      var currentRemainingMultipliers = props.remainingMultipliers;
-      currentRemainingMultipliers.splice(props.randomMultiplierIndex, 1);
-      props.setRemainingMultipliers(currentRemainingMultipliers);
-      console.log("props.remainingMultipliers")
-      console.log(props.remainingMultipliers)
-      console.log("correct")
-      console.log(correctAnswer)
-    }
-    else{
-      console.log("Wrong")
-      console.log(correctAnswer)
-    }
+  var handleSubmit=function(e){
+    e.preventDefault();
+    props.pressOk(subjectInputElement, correctAnswer);
+    form.reset();
   }
 
   return(
     <div id="focus-div" className="h-56 grid grid-cols-1 gap-4 place-items-center ...">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit.bind(this)}>
         <label> {props.currentTable} </label>
         <label> x </label>
         <label> {props.currentRandomMultiplier} = </label>
