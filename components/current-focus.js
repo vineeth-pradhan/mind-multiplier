@@ -1,51 +1,48 @@
-import React from 'react'
+import { useState, useEffect } from 'react';
 
-class CurrentFocus extends React.Component{
-  constructor(){
-    super()
-    this.state = { subjectInputElement: null, correctAnswer: null }
-  }
+function CurrentFocus(props){
+  const [subjectInputElement, setSubjectInputElement] = useState();
+  const [correctAnswer, setCorrectAnswer] = useState();
 
-  componentDidMount(){
-    this.focusOnInputElement()
-    this.setCorrectAnswer()
-  }
+  useEffect(() => {
+    let element = document.getElementById("focus-div").querySelector("[focus='true']") 
+    element.focus();
+    setSubjectInputElement(element);
+  });
 
-  focusOnInputElement(){
-    this.subjectInputElement = document.getElementById("focus-div").querySelector("[focus='true']")
-    this.subjectInputElement.focus()
-  }
+  useEffect(() => {
+    setCorrectAnswer(props.currentTable * props.currentRandomMultiplier);
+  })
 
-  setCorrectAnswer(){
-    this.setState({ correctAnswer: this.props.currentTable * this.props.currentRandomMultiplier })
-  }
-
-  handleSubmit(e){
+  var handleSubmit = function(e){
     e.preventDefault()
-    if(parseInt(this.subjectInputElement.value) == this.state.correctAnswer){
+    if(parseInt(subjectInputElement.value) == correctAnswer){
+      var currentRemainingMultipliers = props.remainingMultipliers;
+      currentRemainingMultipliers.splice(props.randomMultiplierIndex, 1);
+      props.setRemainingMultipliers(currentRemainingMultipliers);
+      console.log("props.remainingMultipliers")
+      console.log(props.remainingMultipliers)
       console.log("correct")
-      console.log(this.state.correctAnswer)
+      console.log(correctAnswer)
     }
     else{
       console.log("Wrong")
-      console.log(this.state.correctAnswer)
+      console.log(correctAnswer)
     }
   }
 
-  render(){
-    return(
-      <div id="focus-div" className="h-56 grid grid-cols-1 gap-4 place-items-center ...">
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <label> {this.props.currentTable} </label>
-          <label> x </label>
-          <label> {this.props.currentRandomMultiplier} = </label>
-          <input type="text" name="table-answer" className="border border-black rounded-full text-xl indent-3 focus-visible:outline-none" focus="true" />
-          <button type="submit" className="ml-3 px-2 py-2 font-semibold rounded-full border border-sky-700 text-sm bg-sky-500 hover:bg-sky-700"> Ok 
-          </button>
-        </form>
-      </div>
-    )
-  }
+  return(
+    <div id="focus-div" className="h-56 grid grid-cols-1 gap-4 place-items-center ...">
+      <form onSubmit={handleSubmit}>
+        <label> {props.currentTable} </label>
+        <label> x </label>
+        <label> {props.currentRandomMultiplier} = </label>
+        <input type="text" name="table-answer" className="border border-black rounded-full text-xl indent-3 focus-visible:outline-none" focus="true" />
+        <button type="submit" className="ml-3 px-2 py-2 font-semibold rounded-full border border-sky-700 text-sm bg-sky-500 hover:bg-sky-700"> Ok 
+        </button>
+      </form>
+    </div>
+  )
 }
 
 export default CurrentFocus
