@@ -15,7 +15,7 @@ class Menu extends React.Component{
             <details close="true">
               <summary>Play</summary>
               <ul>
-                <li><Link href="/tables/play/one">One Table</Link></li>
+                <li><Link href="/mind-multiplier/play/one">One Table</Link></li>
                 <li><Link href="/tables/play/master">Master</Link></li>
               </ul>
             </details>

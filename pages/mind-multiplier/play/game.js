@@ -1,15 +1,18 @@
-import Layout from './layout';
+import Layout from '../../../components/layout';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
-const CurrentFocus = dynamic(() => import('./current-focus.js'), { ssr: false });
+import { useRouter } from 'next/router';
+const QuestionAndInput = dynamic(() => import('../../../components/mind-multiplier/question-and-input.js'), { ssr: false });
 
 function Game(){
-  const [table, setTable] = useState(12);
+  const router = useRouter();
+  const [table, setTable] = useState(parseInt(router.query.table));
   const [remainingMultipliers, setRemainingMultipliers] = useState([1,2,3,4,5,6,7,8,9,10]);
   const [currentRandomMultiplier, setCurrentRandomMultiplier] = useState(null);
   const [randomMultiplierIndex, setRandomMultiplierIndex] = useState();
 
   useEffect(() => {
+    console.log(router.query)
     calculateCurrentRandomMultiplier();
   })
 
@@ -19,7 +22,7 @@ function Game(){
     setCurrentRandomMultiplier(remainingMultipliers[randomMultiplierIndex]);
   }
 
-  var handleSubmit = function(subjectInputElement, correctAnswer){
+  var pressGo = function(subjectInputElement, correctAnswer){
     if(parseInt(subjectInputElement.value) == correctAnswer){
       var currentRemainingMultipliers = remainingMultipliers;
       currentRemainingMultipliers.splice(randomMultiplierIndex, 1);
@@ -35,13 +38,13 @@ function Game(){
   return(
     <div className="fixed left-[345px] max-w-[55%] overflow-y-auto max-h-[80%]">
       { remainingMultipliers.length > 0 ? (
-        <CurrentFocus
+        <QuestionAndInput
           remainingMultipliers={remainingMultipliers}
           currentTable={table}
           currentRandomMultiplier={currentRandomMultiplier}
           setRemainingMultipliers={setRemainingMultipliers}
           randomMultiplierIndex={randomMultiplierIndex}
-          pressOk={handleSubmit}
+          pressGo={pressGo}
         />
       ):(
           <div>
@@ -53,4 +56,4 @@ function Game(){
   )
 }
 
-export default Game
+export default Game;
