@@ -3,6 +3,8 @@ import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import Menu from '../components/menu.js'
+import Score from '../components/score.js'
 
 export const siteTitle = `Mind Multiplier`
 
@@ -29,7 +31,11 @@ export default function Layout({ children, home }) {
       <header className={styles.header}>
         <h1 className={utilStyles.heading2Xl}>{siteTitle}</h1>
       </header>
-      <main>{children}</main>
+      <main className="relative">
+        <Menu />
+        {children}
+        <Score />
+      </main>
     </div>
   )
 }

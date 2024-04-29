@@ -11,9 +11,6 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <div className="relative">
-        <Menu />
-      </div>
     </Layout>
   )
 }

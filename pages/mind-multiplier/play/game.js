@@ -14,7 +14,6 @@ function Game(){
   const [randomMultiplierIndex, setRandomMultiplierIndex] = useState();
 
   useEffect(() => {
-    console.log("HERE")
     if(isNaN(table)){ router.push("/mind-multiplier/play/one"); }
     else{ calculateCurrentRandomMultiplier(); }
   },[]);
@@ -40,7 +39,7 @@ function Game(){
 
   return(
     <Layout>
-      <div className="fixed left-[345px] max-w-[55%] overflow-y-auto max-h-[80%]">
+      <div className="fixed left-[40%] max-w-[55%] overflow-y-auto max-h-[80%]">
         { remainingMultipliers.length > 0 ? (
           <QuestionAndInput
             remainingMultipliers={remainingMultipliers}
@@ -51,7 +50,7 @@ function Game(){
             pressGo={pressGo}
           />
         ):(
-            <div>
+            <div className="fixed left-[40%] max-w-[55%] overflow-y-auto max-h-[80%]">
               Done
             </div>
           )
