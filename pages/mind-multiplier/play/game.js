@@ -2,6 +2,8 @@ import Layout from '../../../components/layout';
 import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
 const QuestionAndInput = dynamic(() => import('../../../components/mind-multiplier/question-and-input.js'), { ssr: false });
 
 function Game(){
@@ -12,9 +14,10 @@ function Game(){
   const [randomMultiplierIndex, setRandomMultiplierIndex] = useState();
 
   useEffect(() => {
-    console.log(router.query)
-    calculateCurrentRandomMultiplier();
-  })
+    console.log("HERE")
+    if(isNaN(table)){ router.push("/mind-multiplier/play/one"); }
+    else{ calculateCurrentRandomMultiplier(); }
+  },[]);
 
   var calculateCurrentRandomMultiplier = function(){
     let randomMultiplierIndex = Math.floor(Math.random() * remainingMultipliers.length);
@@ -36,23 +39,25 @@ function Game(){
   }
 
   return(
-    <div className="fixed left-[345px] max-w-[55%] overflow-y-auto max-h-[80%]">
-      { remainingMultipliers.length > 0 ? (
-        <QuestionAndInput
-          remainingMultipliers={remainingMultipliers}
-          currentTable={table}
-          currentRandomMultiplier={currentRandomMultiplier}
-          setRemainingMultipliers={setRemainingMultipliers}
-          randomMultiplierIndex={randomMultiplierIndex}
-          pressGo={pressGo}
-        />
-      ):(
-          <div>
-            Done
-          </div>
-        )
-      }
-    </div>
+    <Layout>
+      <div className="fixed left-[345px] max-w-[55%] overflow-y-auto max-h-[80%]">
+        { remainingMultipliers.length > 0 ? (
+          <QuestionAndInput
+            remainingMultipliers={remainingMultipliers}
+            currentTable={table}
+            currentRandomMultiplier={currentRandomMultiplier}
+            setRemainingMultipliers={setRemainingMultipliers}
+            randomMultiplierIndex={randomMultiplierIndex}
+            pressGo={pressGo}
+          />
+        ):(
+            <div>
+              Done
+            </div>
+          )
+        }
+      </div>
+    </Layout>
   )
 }
 

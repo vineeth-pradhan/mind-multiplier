@@ -7,7 +7,7 @@ function NewTable(){
 
   useEffect(() => {
     focusOnInputElement();
-  })
+  },[])
 
   var focusOnInputElement = () => {
     document.getElementById("one-div").querySelector("[focus='true']").focus();
@@ -16,7 +16,6 @@ function NewTable(){
   var pressOk = (e) => {
     e.preventDefault();
     let table_value = parseInt(e.target.querySelector("input[name='which-table']").value);
-    console.log(isNaN(table_value))
     if(!isNaN(table_value)){
       router.push(`/mind-multiplier/play/game?table=${table_value}`);
     }
