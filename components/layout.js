@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from './layout.module.css'
-import utilStyles from '../styles/utils.module.css'
-import Link from 'next/link'
-import Menu from '../components/menu.js'
-import Score from '../components/score.js'
+import styles from './layout.module.css';
+import utilStyles from '../styles/utils.module.css';
+import Link from 'next/link';
+import Menu from '../components/menu.js';
+import Score from './score.js';
 
 export const siteTitle = `Mind Multiplier`
 
@@ -34,7 +34,6 @@ export default function Layout({ children, home }) {
       <main className="relative">
         <Menu />
         {children}
-        <Score />
       </main>
     </div>
   )
