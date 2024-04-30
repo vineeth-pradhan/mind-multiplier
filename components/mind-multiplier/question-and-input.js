@@ -27,7 +27,7 @@ function QuestionAndInput(props){
   }
 
   return(
-    <div id="focus-div" className="h-56 grid grid-cols-1 gap-4 place-items-center ...">
+    <div id="focus-div" className="fixed h-56 grid grid-cols-1 gap-4 ...">
       <form onSubmit={handleSubmit.bind(this)}>
         <label> {props.currentTable} </label>
         <label> x </label>
