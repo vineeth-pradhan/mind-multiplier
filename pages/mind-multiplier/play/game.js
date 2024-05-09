@@ -6,12 +6,13 @@ import { useRouter } from 'next/router';
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 const QuestionAndInput = dynamic(() => import('../../../components/mind-multiplier/question-and-input.js'), { ssr: false });
+const _multipliers = [1,2,3,4,5,6,7,8,9,10];
 
 function Game(){
   const router = useRouter();
   const [score, setScore] = useState(0);
   const [table, setTable] = useState(parseInt(router.query.table));
-  const [remainingMultipliers, setRemainingMultipliers] = useState([1,2,3,4,5,6,7,8,9,10]);
+  const [remainingMultipliers, setRemainingMultipliers] = useState(_multipliers);
   const [currentRandomMultiplier, setCurrentRandomMultiplier] = useState(null);
   const [randomMultiplierIndex, setRandomMultiplierIndex] = useState();
 
