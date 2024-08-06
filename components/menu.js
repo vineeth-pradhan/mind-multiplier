@@ -7,7 +7,7 @@ function Menu(){
       <ul className="menu bg-base-200 w-56 rounded-box min-w-[20%]">
         <li><Link href="/tables/recite-all">Recite</Link></li>
         <li>
-          <details close="true">
+          <details>
             <summary>Play</summary>
             <ul>
               <li><Link href="/mind-multiplier/play/one">One Table</Link></li>
